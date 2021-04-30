@@ -1,12 +1,10 @@
 import PySimpleGUI as sg
 import math
-import threading
-# sg.ChangeLookAndFeel('grey')
 
 
 class JoyStick:
     def __init__(self):
-        threading.Thread.__init__(self)
+
         layout = [
             [sg.Graph(canvas_size=(500, 500), graph_bottom_left=(0,0), graph_top_right=(500, 500), change_submits=True,
                       drag_submits=True, key='graph')],
@@ -24,6 +22,7 @@ class JoyStick:
         line_y = self.__graph.DrawLine((250, 0), (250, 500))
         self.__graph.TKCanvas.itemconfig(cir, fill="white")
         self.__graph.TKCanvas.itemconfig(self.__cir_joy, fill="cyan")
+        self.close = False
         self.xy_coordinates = [0, 0]
         self.rt_coordinates = [0, 0]
 
@@ -41,23 +40,28 @@ class JoyStick:
 
     def run(self):
         while True:
-            event, values = self.__window.read()
-            if event == sg.WIN_CLOSED:
+            self.update()
+            if self.close:
                 break
-            elif event == 'graph+UP':
-                self.__joy_pos_setter(250, 250)
-                self.__window['-xy-'].update(f'X-Y Coordinates: (0, 0)')
-                self.__window['-rt-'].update(f'r-θ Coordinates: (0, 0)')
-            elif event == 'graph':
-                position = values['graph']
-                self.__joy_pos_setter(position[0], position[1])
-                self.__show_coordinates(position)
-                text1 = f'X-Y Coordinates: ' \
-                        f'({self.xy_coordinates[0]}, {self.xy_coordinates[1]})'
-                text2 = f'r-θ Coordinates: ' \
-                        f'({int(self.rt_coordinates[0])}, {int(180 * self.rt_coordinates[1] / math.pi)})'
-                self.__window['-xy-'].update(text1)
-                self.__window['-rt-'].update(text2)
+
+    def update(self):
+        event, values = self.__window.read()
+        if event == sg.WIN_CLOSED:
+            self.close = True
+        elif event == 'graph+UP':
+            self.__joy_pos_setter(250, 250)
+            self.__window['-xy-'].update(f'X-Y Coordinates: (0, 0)')
+            self.__window['-rt-'].update(f'r-θ Coordinates: (0, 0)')
+        elif event == 'graph':
+            position = values['graph']
+            self.__joy_pos_setter(position[0], position[1])
+            self.__show_coordinates(position)
+            text1 = f'X-Y Coordinates: ' \
+                    f'({self.xy_coordinates[0]}, {self.xy_coordinates[1]})'
+            text2 = f'r-θ Coordinates: ' \
+                    f'({int(self.rt_coordinates[0])}, {int(180 * self.rt_coordinates[1] / math.pi)})'
+            self.__window['-xy-'].update(text1)
+            self.__window['-rt-'].update(text2)
 
 
 if __name__ == '__main__':
