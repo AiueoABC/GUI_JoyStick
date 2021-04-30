@@ -36,4 +36,4 @@ while not js.close:
     rt = js.rt_coordinates
     cmd = calculate_lrPow(rt[0], rt[1])
     print(cmd)
-    "It's useful to send this cmd to Arduino via serial communication"
+    "It's easy to send this cmd to Arduino via serial communication"
