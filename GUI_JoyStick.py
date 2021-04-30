@@ -23,11 +23,11 @@ class JoyStick:
         cir = self.__graph.DrawOval((0, 0), (2 * self.r_max, 2 * self.r_max))
         self.__graph.DrawOval((int(self.r_max / 2), int(self.r_max / 2)),
                               (int(self.r_max * 3 / 2), int(self.r_max * 3 / 2)))
+        self.__graph.DrawLine((0, self.r_max), (self.r_max * 2, self.r_max))
+        self.__graph.DrawLine((self.r_max, 0), (self.r_max, self.r_max * 2))
         self.__cir_joy = self.__graph.DrawOval((self.r_max - size, self.r_max - size),
                                                (self.r_max + size, self.r_max + size))
         self.__cir_joy_pos = (self.r_max, self.r_max)
-        self.__graph.DrawLine((0, self.r_max), (self.r_max * 2, self.r_max))
-        self.__graph.DrawLine((self.r_max, 0), (self.r_max, self.r_max * 2))
         self.__graph.TKCanvas.itemconfig(cir, fill="white")
         self.__graph.TKCanvas.itemconfig(self.__cir_joy, fill="cyan")
         self.close = False
