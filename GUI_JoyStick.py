@@ -14,8 +14,8 @@ class JoyStick:
                       change_submits=True,
                       drag_submits=True,
                       key='graph')],
-            [sg.Text('X-Y Coordinates: (0, 0)        ', key='-xy-')],
-            [sg.Text('r-θ Coordinates: (0, 0)        ', key='-rt-')]
+            [sg.Text('X-Y Coordinates: (0, 0)        ', key='-xy-')],  # I put spaces to secure space,
+            [sg.Text('r-θ Coordinates: (0, 0)        ', key='-rt-')]  # this can be also done by setting space
         ]
         window = sg.Window('JoyStick', layout, finalize=True)
         self.__window = window
