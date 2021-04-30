@@ -3,23 +3,31 @@ import math
 
 
 class JoyStick:
-    def __init__(self):
-
+    def __init__(self, r_max=250, stick_size=20):
+        self.r_max = r_max
+        self.stick_size = stick_size
+        size = int(self.stick_size / 2)
         layout = [
-            [sg.Graph(canvas_size=(500, 500), graph_bottom_left=(0,0), graph_top_right=(500, 500), change_submits=True,
-                      drag_submits=True, key='graph')],
+            [sg.Graph(canvas_size=(2 * self.r_max, 2 * self.r_max),
+                      graph_bottom_left=(0, 0),
+                      graph_top_right=(2 * self.r_max, 2 * self.r_max),
+                      change_submits=True,
+                      drag_submits=True,
+                      key='graph')],
             [sg.Text('X-Y Coordinates: (0, 0)        ', key='-xy-')],
             [sg.Text('r-θ Coordinates: (0, 0)        ', key='-rt-')]
         ]
         window = sg.Window('JoyStick', layout, finalize=True)
         self.__window = window
         self.__graph = window['graph']
-        cir = self.__graph.DrawOval((0, 0), (500, 500))
-        cir_half = self.__graph.DrawOval((125, 125), (375, 375))
-        self.__cir_joy = self.__graph.DrawOval((240, 240), (260, 260))
-        self.__cir_joy_pos = (250, 250)
-        line_x = self.__graph.DrawLine((0, 250), (500, 250))
-        line_y = self.__graph.DrawLine((250, 0), (250, 500))
+        cir = self.__graph.DrawOval((0, 0), (2 * self.r_max, 2 * self.r_max))
+        self.__graph.DrawOval((int(self.r_max / 2), int(self.r_max / 2)),
+                              (int(self.r_max * 3 / 2), int(self.r_max * 3 / 2)))
+        self.__cir_joy = self.__graph.DrawOval((self.r_max - size, self.r_max - size),
+                                               (self.r_max + size, self.r_max + size))
+        self.__cir_joy_pos = (self.r_max, self.r_max)
+        self.__graph.DrawLine((0, self.r_max), (self.r_max * 2, self.r_max))
+        self.__graph.DrawLine((self.r_max, 0), (self.r_max, self.r_max * 2))
         self.__graph.TKCanvas.itemconfig(cir, fill="white")
         self.__graph.TKCanvas.itemconfig(self.__cir_joy, fill="cyan")
         self.close = False
