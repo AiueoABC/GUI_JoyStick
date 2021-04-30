@@ -53,7 +53,7 @@ class JoyStick:
                 break
 
     def update(self):
-        event, values = self.__window.read()
+        event, values = self.__window.read(timeout=100)
         if event == sg.WIN_CLOSED:
             self.close = True
         elif event == 'graph+UP':
