@@ -71,6 +71,10 @@ class JoyStick:
             self.__window['-xy-'].update(text1)
             self.__window['-rt-'].update(text2)
 
+    def closeWindow(self):
+        self.close = True
+        self.__window.close()
+
 
 if __name__ == '__main__':
     js = JoyStick()
