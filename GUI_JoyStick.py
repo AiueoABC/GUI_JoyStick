@@ -42,7 +42,7 @@ class JoyStick:
         self.__cir_joy_pos = (x_togo, y_togo)
 
     def __show_coordinates(self, position):
-        self.xy_coordinates = position[0] - 250, position[1] - 250
+        self.xy_coordinates = position[0] - self.r_max, position[1] - self.r_max
         self.rt_coordinates = (self.xy_coordinates[0] ** 2 + self.xy_coordinates[1] ** 2) ** 0.5, \
                               math.atan2(self.xy_coordinates[1], self.xy_coordinates[0])
 
@@ -57,7 +57,8 @@ class JoyStick:
         if event == sg.WIN_CLOSED:
             self.close = True
         elif event == 'graph+UP':
-            self.__joy_pos_setter(250, 250)
+            self.__joy_pos_setter(self.r_max, self.r_max)
+            self.__show_coordinates((self.r_max, self.r_max))
             self.__window['-xy-'].update(f'X-Y Coordinates: (0, 0)')
             self.__window['-rt-'].update(f'r-θ Coordinates: (0, 0)')
         elif event == 'graph':
