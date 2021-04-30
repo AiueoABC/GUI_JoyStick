@@ -7,7 +7,7 @@ In this example, cmd will be like "L+00R+00e", where
 "L+00" indicates power and direction of left crawler, 
 "R+00" indicates power and direction of right crawler, and
 "e" indicates terminator of cmd.
-This format of cmd is useful for working with Arduino.
+This format can be useful when you want to use serial communication and udp communication.
 '''
 
 cmd = "L+00R+00e"  # Range of power is from -99 to +99 for each L and R.
@@ -36,4 +36,4 @@ while not js.close:
     rt = js.rt_coordinates
     cmd = calculate_lrPow(rt[0], rt[1])
     print(cmd)
-    "It's easy to send this cmd to Arduino via serial communication"
+    "It's easy to send this cmd via serial communication"
