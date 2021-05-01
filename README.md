@@ -19,6 +19,7 @@ while True:
     if js.close:
         break
 ```
+In this case, `js.xy_coordinates` has (X [pxls], Y [pxls]) data, and `js.rt_coordinates` has (r [pxls], theta [rad]) data.
 
 # Example
 This is an example to generate a cmd to control 2 wheels, left and right wheels, vehicle.  
