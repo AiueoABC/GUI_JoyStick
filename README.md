@@ -6,7 +6,7 @@ Make sure you have installed PySimpleGUI in your Python3.
 ### To Try and Check JoyStick
 To check, simply run `python GUI_JoyStick.py`  
 You will see this window;  
-![UI_image](./UI_image/JoyStickUI.bmp)  
+![UI_image](https://raw.githubusercontent.com/AiueoABC/GUI_JoyStick/main/UI_image/JoyStickUI.bmp)  
 The JoyStick Pad, shown as cyan circle, will stick to your mouse pointer on left click-down, 
 and back to center on left click-up.  
 The coordinates at lower left side are written in (X [pxls], Y [pxls]) and (r [pxls], theta [deg]) formats.
@@ -32,7 +32,7 @@ It's possible to change circle size and pad size, on set `js = GUI_JoyStick.JoyS
 ### How values are set
 The origin to calculate coordinates are at the cross point of horizontal and vertical lines shown in UI.  
 The coordinates values are taken as shown in below;  
-![UI_image](./UI_image/JoyStickUI_CoordinatesSystem.bmp)
+![UI_image](https://raw.githubusercontent.com/AiueoABC/GUI_JoyStick/main/UI_image/JoyStickUI_CoordinatesSystem.bmp)
 # Example
 This is an example to generate a cmd to control 2 wheels, left and right wheels, vehicle.  
 To do this, we need to tell directions and powers to apply for both wheels.  
