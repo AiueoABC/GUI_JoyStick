@@ -12,7 +12,7 @@ and back to center on left click-up.
 The coordinates at lower left side are written in (X [pxls], Y [pxls]) and (r [pxls], theta [deg]) formats.
 
 ### To Use In Your Code
-To use coordinates in your own code, do like following;  
+To use coordinates in your own code, put `GUI_JoyStick.py` at the same directory located your code and do like following;  
 ```
 import GUI_JoyStick
 
@@ -42,5 +42,5 @@ python ./example/ControlCrawlerMotor.py
 ```
 
 # HELP WANTED
-I need your support, pls feed me.  
+I appreciate your kind support, to feed me use this link;  
 <a href="https://www.buymeacoffee.com/aiueoabc" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
