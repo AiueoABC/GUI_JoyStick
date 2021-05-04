@@ -1,5 +1,5 @@
 import math
-from GUI_JoyStick import GUI_JoyStick
+import GUI_JoyStick
 
 '''
 To control 2 motors for 2 crawlers, this example will generate a cmd to control them.
