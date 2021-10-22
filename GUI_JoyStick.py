@@ -36,23 +36,13 @@ class JoyStick:
 
     def __joy_pos_setter(self, x_togo, y_togo):
         posx, posy = self.__cir_joy_pos
-
-        if math.sqrt((x_togo-self.r_max)**2 + (y_togo-self.r_max)**2) < self.r_max - self.stick_size/2:
-            dx = x_togo - posx
-            dy = y_togo - posy
-            self.__graph.MoveFigure(self.__cir_joy, dx, dy)
-            self.__cir_joy_pos = (x_togo, y_togo)
-        else:
-            theta = math.atan2(y_togo - self.r_max, x_togo - self.r_max)
-            x_togo = (self.r_max-self.stick_size/2) * math.cos(theta) + self.r_max
-            y_togo = (self.r_max-self.stick_size/2) * math.sin(theta) + self.r_max
-            dx = x_togo - posx
-            dy = y_togo - posy
-            self.__graph.MoveFigure(self.__cir_joy, dx, dy)
-            self.__cir_joy_pos = (x_togo, y_togo)
+        dx = x_togo - posx
+        dy = y_togo - posy
+        self.__graph.MoveFigure(self.__cir_joy, dx, dy)
+        self.__cir_joy_pos = (x_togo, y_togo)
 
     def __show_coordinates(self, position):
-        self.xy_coordinates = int(self.__cir_joy_pos[0]) - self.r_max, int(self.__cir_joy_pos[1]) - self.r_max
+        self.xy_coordinates = position[0] - self.r_max, position[1] - self.r_max
         self.rt_coordinates = (self.xy_coordinates[0] ** 2 + self.xy_coordinates[1] ** 2) ** 0.5, \
                               math.atan2(self.xy_coordinates[1], self.xy_coordinates[0])
 
