@@ -14,10 +14,6 @@ layout = [
     [sg.Button('BACK TO THE CENTER'),
      sg.Text('RobotRotation:                    ', key='rotation'),
      sg.Text('RobotTheta:                    ', key='theta')],
-    # [sg.Button('PUT DOT AT CLICK POINT'),
-    #  sg.Text('DOT PUT MODE: OFF', key='dotput'),
-    #  sg.Button('START/STOP'),
-    #  sg.Text('STATUS: Auto Move Disabled', key='status')]
 ]
 
 window = sg.Window('SmallRobotExample', layout, finalize=True)
@@ -47,7 +43,6 @@ def cmdcontrol(l_value, r_value, k=0.3):
             pass
         else:
             l_dx, l_dy = l_dl * (-math.sin(robotrotation)), l_dl * math.cos(robotrotation)
-            # r_dx, r_dy = l_dx, l_dy
             graph.MoveFigure(leftBody, l_dx, l_dy)
             graph.MoveFigure(rightBody, l_dx, l_dy)
             graph.MoveFigure(mainBody, l_dx, l_dy)
@@ -98,11 +93,6 @@ def calculate_lrPow(r, theta):
     return (lPow, rPow)
 
 
-# def track_dots(dots):
-#     for dot in dots:
-#         distance = math.sqrt((dot[0] - robotcenter[0]) ** 2 + (dot[1] - robotcenter[1]) ** 2)
-
-
 if __name__ == '__main__':
     dotmode = False
     automove = False
@@ -117,11 +107,6 @@ if __name__ == '__main__':
         window['rotation'].update(f'RobotRotation: {rot}')
         if event == sg.WIN_CLOSED:
             break
-        # elif event == 'graph+UP':
-        #     a = 1
-        # elif event == 'graph':
-        #     position = values['graph']
-        #     dots.append(position)
         elif event == 'BACK TO THE CENTER':
             robotcenter = (375, 375)
             robotleftcenter = (robotcenter[0] - robotwidth / 2, robotcenter[1])
@@ -135,24 +120,8 @@ if __name__ == '__main__':
             rightBody = graph.DrawLine(robotrightcenter, (robotrightcenter[0], robotrightcenter[1] + robotlength),
                                        color='cyan', width=3)
             reddot = graph.DrawPoint((robotcenter[0], robotcenter[1] + robotlength), size=robotwidth, color='red')
-        #     dots = []
-        # elif event == 'PUT DOT AT CLICK POINT':
-        #     if dotmode:
-        #         dotmode = False
-        #         window['dotput'].update('DOT PUT MODE: OFF')
-        #     else:
-        #         dotmode = True
-        #         window['dotput'].update('DOT PUT MODE: ON')
-        # elif event == 'START/STOP':
-        #     if automove:
-        #         automove = False
-        #         window['status'].update('STATUS: Auto Move Disabled')
-        #     else:
-        #         automove = True
-        #         window['status'].update('STATUS: Auto Move Enabled')
 
         if js.close:
             break
-        # print(str(math.sqrt((robotrightcenter[0] - robotleftcenter[0]) ** 2 + (robotrightcenter[1] - robotleftcenter[1]) ** 2)))
 
     window.close()
